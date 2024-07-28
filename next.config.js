@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
-    igonreBuildErrors: true,
+    ignoreBuildErrors: true, // Fixed typo here
   },
   experimental: {
-    serverActions: true,
-    serverComponentsExternalPackages: ["mongoose"],
+    serverComponentsExternalPackages: ["mongoose"], // Removed serverActions option
   },
   eslint: {
     // Warning: This allows production builds to successfully complete even if

@@ -1,0 +1,38 @@
+{
+    "name": "Classcify",
+    "version": "1.0.0",
+    "description": "A web app designed for college students.",
+    "author": "Rakesh Choudhary",
+    "license": "MIT",
+    "routes": [
+      {
+        "path": "/",
+        "description": "Home page"
+      },
+      {
+        "path": "/feed",
+        "description": "Home feed for sharing content"
+      },
+      {
+        "path": "/docs",
+        "description": "Docs manager for managing PDFs"
+      },
+      {
+        "path": "/marketplace",
+        "description": "Section for buying and selling old books and materials"
+      },
+      {
+        "path": "/announcements",
+        "description": "Public announcement group for college-related communications"
+      }
+    ],
+    "config": {
+      "apiUrl": "http://localhost:3000/api",
+      "database": {
+        "host": "localhost",
+        "port": 27017,
+        "name": "classcify"
+      }
+    }
+  }
+  

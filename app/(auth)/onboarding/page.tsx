@@ -1,23 +1,32 @@
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-
 import { fetchUser } from "@/lib/actions/user.actions";
 import AccountProfile from "@/components/forms/AccountProfile";
 
 async function Page() {
   const user = await currentUser();
-  if (!user) return null; // to avoid typescript warnings
+  
+  if (!user) {
+    // Redirect to login or show an appropriate message
+    redirect("/login");
+    return null; // Ensure component does not render anything
+  }
 
   const userInfo = await fetchUser(user.id);
-  if (userInfo?.onboarded) redirect("/");
+  
+  if (userInfo?.onboarded) {
+    // Redirect if user is already onboarded
+    redirect("/");
+    return null; // Ensure component does not render anything
+  }
 
   const userData = {
     id: user.id,
-    objectId: userInfo?._id,
-    username: userInfo ? userInfo?.username : user.username,
-    name: userInfo ? userInfo?.name : user.firstName ?? "",
-    bio: userInfo ? userInfo?.bio : "",
-    image: userInfo ? userInfo?.image : user.imageUrl,
+    objectId: userInfo?._id || "",
+    username: userInfo?.username || user.username,
+    name: userInfo?.name || user.firstName || "",
+    bio: userInfo?.bio || "",
+    image: userInfo?.image || user.imageUrl,
   };
 
   return (
